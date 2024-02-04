@@ -18,8 +18,8 @@
 
 <img src="./assets/validation.gif" alt="로그인 유효성 검사" width="450px">
 
-**2. email, password 유효성 검사
-email : email 형식 일치 확인
+**2. email, password 유효성 검사<br/>
+email : email 형식 일치 확인<br/>
 password : 알파벳, 숫자, 특수문자(!@#$%^*+=-)가 최소 하나씩 존재해야 하며 길이는 6자~16자 사이인 형식에 일치하는지 확인**
 
 <img src="./assets/login_check.gif" alt="로그인 실패 시 경고창" width="450px">
