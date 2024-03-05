@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Times Tables</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Header() {
+        return (
+          <header>
+            <h1>구구단을 외우자!</h1>
+          </header>
+        );
+      }
+
+      function TimesTablesInput({ number, setNumber, setMultipleResult }) {
+        return (
+          <div id="NumberInput">
+            <input
+              type="text"
+              value={number}
+              placeholder="숫자를 입력해주세요."
+              onChange={(event) => setNumber(event.target.value)}
+              onKeyUp={(event) => handleKeyUp(event, number, setMultipleResult)}
+              autoFocus
+            />
+            <button
+              type="button"
+              onClick={() => handleResult(number, setMultipleResult)}
+            >
+              클릭!
+            </button>
+          </div>
+        );
+      }
+
+      const handleResult = (number, setMultipleResult) => {
+        let resultNumber = [];
+        if (number.trim() === "" || isNaN(number)) {
+          return alert("숫자를 입력해주세요.");
+        }
+        for (let i = 1; i <= 9; i++) {
+          resultNumber.push({ number, result: number * i });
+        }
+        setMultipleResult(resultNumber);
+      };
+
+      const handleKeyUp = (event, number, setMultipleResult) => {
+        if (event.key === "Enter") handleResult(number, setMultipleResult);
+      };
+
+      function TimesTables({ multipleResult }) {
+        return multipleResult.map((item, index) => (
+          <p key={index}>{item.number} × {index + 1} = {item.result}</p>
+        ));
+      }
+
+      function App() {
+        const [number, setNumber] = React.useState("");
+        const [multipleResult, setMultipleResult] = React.useState([]);
+
+        return (
+          <div id="app">
+            <Header />
+            <TimesTablesInput
+              number={number}
+              setNumber={setNumber}
+              setMultipleResult={setMultipleResult}
+            />
+            <TimesTables number={number} multipleResult={multipleResult} />
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>

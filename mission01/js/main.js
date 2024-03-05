@@ -13,6 +13,7 @@ const user = {
 */
 
 // querySelector
+// 진혁멘토님: $idInput, $pwInput(요소 노드를 의미하는 $) 추천
 
 const userEmail = document.querySelector("#userEmail");
 const userPassword = document.querySelector("#userPassword");
@@ -47,12 +48,16 @@ function handleCheckPassword() {
   }
 }
 
+// @ 기호 포함, .이후 2글자 이상
+
 function emailReg(text) {
   const re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   return re.test(String(text).toLowerCase());
 }
+
+// 최소 6글자 이상, 0~9이상 숫자 1개 이상, 특수기호 1개 이상 포함
 
 function pwReg(text) {
   const re = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{6,16}$/;
@@ -90,7 +95,10 @@ function handleSubmit(e) {
     showErrorMessage(userPassword);
   }
 
-  if (emailReg(userEmail.value) && pwReg(userPassword.value)) {
+  // 서버와 통신을 할 때는 try...catch문 사용할 것
+  // 상태관리 변수를 통해 조건처리 추가
+
+  if (isInputValid.email && isInputValid.password) {
     if (userEmail.value === user.id && userPassword.value === user.pw) {
       loginSuccess();
     } else {
@@ -101,7 +109,7 @@ function handleSubmit(e) {
   }
 }
 
-const loginSuccess = () => (location.href = "welcome.html");
+const loginSuccess = () => (window.location.href = "welcome.html");
 
 // 이벤트 핸들러
 
