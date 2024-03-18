@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "omyu_pretty";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 보기 불편해서 급하게 조정함, 추후 수정 예정 */
+
+/* Resets */
+a {
+  text-decoration: unset;
+  color: unset;
+}
+
+/* Typography */
+:root {
+  font-family: "omyu_pretty";
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+a,
+span,
+div {
+  font-size: 20px;
+}
+
+/* Layout */
+li,
+a,
+div {
+  padding: 5px;
+}
